@@ -39,7 +39,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 			ball.setVelocityY(-currentY);
 			int currentX = ball.getVx();
 			ball.setVelocityX(-currentX);
-		}
+		} 
 		//paddle
 //		p2.setVy(5); 
 		if(p1.getY() == 0) {
