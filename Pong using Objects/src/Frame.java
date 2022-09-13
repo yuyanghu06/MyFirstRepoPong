@@ -34,12 +34,19 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 		}
 		//ball collision with paddles
 		if(ball.getY() >= p1.getY() && ball.getY() <= (p1.getY() + 125) &&
-				ball.getX() >= p1.getX() && ball.getX() <= (p1.getX()+1)) {
+				ball.getX() >= p1.getX() && ball.getX() <= (p1.getX()+20)) {
+			int currentY = ball.getVy();
+			ball.setVelocityY(-currentY);
+			int currentX = ball.getVx();
+			ball.setVelocityX(-currentX);	
+		} 
+		if(ball.getY() >= p2.getY() && ball.getY() <= (p2.getY() + 125) &&
+				ball.getX() == p2.getX()){
 			int currentY = ball.getVy();
 			ball.setVelocityY(-currentY);
 			int currentX = ball.getVx();
 			ball.setVelocityX(-currentX);
-		} 
+		}
 		//paddle
 //		p2.setVy(5); 
 		if(p1.getY() == 0) {
@@ -84,16 +91,17 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 			//s key
 			if(arg0.getKeyCode()==83) {
 			p1.setVy(5);
+			}
 			//up key
 			if(arg0.getKeyCode()==38) {
 				//update the y position of the right paddle
-				p2.setVy(-5);
+			p2.setVy(-5);
 			}
 			//down key
 			if(arg0.getKeyCode()==40) {
-				p2.setVy(5);
+			p2.setVy(5);
 			}
-			}
+			
 		}
 	
 
