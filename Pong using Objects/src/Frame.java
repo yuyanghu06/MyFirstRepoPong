@@ -24,7 +24,7 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 		ball.paint(g);
 		//ball collision with walls
 		if(ball.getX() >= 740 || ball.getX() <= 0) {
-			int currentX = ball.getVx();
+			int currentX = ball.getVx();  
 		
 			ball.setVelocityX(-currentX);
 		}
