@@ -1,6 +1,9 @@
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.RenderingHints.Key;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -33,13 +36,13 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 			ball.setVelocityY(-currentY);
 		}
 		//ball collision with paddles
-		if(ball.getY() >= p1.getY() && ball.getY() <= (p1.getY() + 125) &&
-				ball.getX() >= p1.getX() && ball.getX() <= (p1.getX()+20)) {
-			int currentY = ball.getVy();
-			ball.setVelocityY(-currentY);
-			int currentX = ball.getVx();
-			ball.setVelocityX(-currentX);	
-		} 
+//		if(ball.getY() >= p1.getY() && ball.getY() <= (p1.getY() + 125) &&
+//				ball.getX() >= p1.getX() && ball.getX() <= (p1.getX()+20)) {
+//			int currentY = ball.getVy();
+//			ball.setVelocityY(-currentY);
+//			int currentX = ball.getVx();
+//			ball.setVelocityX(-currentX);	
+//		} 
 		if(ball.getY() >= p2.getY() && ball.getY() <= (p2.getY() + 125) &&
 				ball.getX() == p2.getX()){
 			int currentY = ball.getVy();
@@ -48,7 +51,6 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 			ball.setVelocityX(-currentX);
 		}
 		//paddle
-//		p2.setVy(5); 
 		if(p1.getY() == 0) {
 			p1.setVy(0);
 			}
@@ -61,7 +63,31 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 		if(p2.getY() == 450) {
 			p2.setVy(0);
 			}	
-	
+		//collision using rectangles
+		Rectangle rBall = new Rectangle(ball.getX(), ball.getY(), ball.getWidth(), ball.getWidth());
+		Rectangle rP1 = new Rectangle(p1.getX(), p1.getY(), p1.getWidth(), p1.getHeight());
+		Rectangle rP2 = new Rectangle(p2.getX(), p2.getY(), p2.getWidth(), p2.getHeight());
+		if (rBall.intersects(rP1)) {
+			int currentY = ball.getVy();
+			ball.setVelocityY(-currentY);
+			int currentX = ball.getVx();
+			ball.setVelocityX(-currentX);
+		}
+		if (rBall.intersects(rP2)) {
+			int currentY = ball.getVy();
+			ball.setVelocityY(-currentY);
+			int currentX = ball.getVx();
+			ball.setVelocityX(-currentX);
+		}
+		int score1 = 0;
+		int score2 = 0; 
+		if(rBall.intersects(rP1)) {
+			score1++; 
+		}
+		Font font = new Font("Monospaced", Font.BOLD, 70);
+		g.setFont(font);
+		g.drawString(score1 + "", 400, 550);
+		
 
 
 
@@ -83,34 +109,35 @@ public class Frame extends JPanel implements KeyListener, ActionListener{
 		//83 is the s key
 		//38 is the up arrow
 		//40 is the down arrow
-			//w key
-			if(arg0.getKeyCode()==87) {
-			//update the y position of the right paddle
-			p1.setVy(-5);
+			//switch statements
+		switch(arg0.getKeyCode()) {
+			//look for special values (cases)
+			case 87: //w key
+				p1.setVy(-5);
+				break; //prevent bleeding into toher cases
+			case 83: //s key
+				p1.setVy(5);
+				break; 
 			}
-			//s key
-			if(arg0.getKeyCode()==83) {
-			p1.setVy(5);
-			}
-			//up key
-			if(arg0.getKeyCode()==38) {
-				//update the y position of the right paddle
-			p2.setVy(-5);
-			}
-			//down key
-			if(arg0.getKeyCode()==40) {
-			p2.setVy(5);
-			}
-			
+		switch(arg0.getKeyCode()) {
+			case 38: //up arrow
+				p2.setVy(-5);
+				break;
+			case 40: //down arrow
+				p2.setVy(5);
+		}
 		}
 	
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-//		if(arg0.) {
-				
-//			}
-		
+		if(arg0.getKeyCode() == 87 || arg0.getKeyCode() == 83) {
+				p1.setVy(0);
+			}
+		if(arg0.getKeyCode() == 38 || arg0.getKeyCode() == 40) {
+				p2.setVy(0);
+		}
+
 	}
 
 	@Override
