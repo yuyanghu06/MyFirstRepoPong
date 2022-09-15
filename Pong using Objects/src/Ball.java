@@ -93,10 +93,10 @@ public class Ball { //class Header
 		y = newY;
 		width = newWidth;
 		//also randomize the colors
-		int red =(int)(Math.random()*(255-0+1))+0;
-		int green = (int)(Math.random()*(255-0+1))+0;
-		int blue = (int)(Math.random()*(255-0+1))+0;
-		color = new Color(red, green, blue);
+//		int red =(int)(Math.random()*(255-0+1))+0;
+//		int green = (int)(Math.random()*(255-0+1))+0;
+//		int blue = (int)(Math.random()*(255-0+1))+0;
+//		color = new Color(red, green, blue);
 						
 	}
 	
@@ -119,7 +119,7 @@ public class Ball { //class Header
 		y += vy;
 		
 		//set the color
-		g.setColor(color);
+		g.setColor(color.WHITE);
 		
 		//draw the object
 		g.fillOval(x, y, width, width);

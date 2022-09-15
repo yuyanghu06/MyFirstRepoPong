@@ -17,7 +17,7 @@ public class Paddle {
 		y = newY;
 		width = 20;
 		height = 125;
-		c = Color.black;
+		c = Color.WHITE;
 	}
 	
 	public void paint(Graphics g) {
@@ -26,7 +26,7 @@ public class Paddle {
 		y += vy; //velocity in y affects position in the y
 		
 		//set the color
-		g.setColor(c);
+		g.setColor(c.WHITE);
 		g.fillRect(x, y, width, height);
 	
 	}
